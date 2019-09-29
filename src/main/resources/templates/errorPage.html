@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">...</div>
+	
+	<div class="container">
+		<div class="starter-template">
+			<h1 th:text="|Error ${errorInfo.code}!|">Error!</h1>
+			<h3 th:text="|Couldn't access ${errorInfo.url}|">Error!</h3>
+			<div th:if="${errorInfo.message} != null">
+				<h3 th:text="|Reason: ${errorInfo.message}|">Error!</h3>
+			</div>
+		</div>
+	</div>
+<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<ul class="footer-Menu">
+						<li><a href="/about">About us</a></li>
+						<li><a href="/contact">Contact us</a></li>
+						<!-- <li><a href="/terms-of-use">Terms of use</a></li> -->
+						<li><a href="/privacy-policy">Privacy Policy</a></li>
+					</ul>
+					
+				</div>
+				<div class="col-md-4 "><p class="text-right">All Rights Reserved @2018</p></div>
+			</div>
+			<hr style="border-color: #6d6a6a;margin:10px 0px 10px 0px"/>
+			<div class="row">
+			<div style="text-align:center; color: #9c9e9e;font-size: 11px;">Best Resolution: 1366x768 on Chrome, Firefox</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

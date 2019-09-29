@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ <div ng-controller="commonPageCtrl">
+		<div class="" style="height:350px">
+		<br />
+			<div class="container">
+			<form name="feedbackForm">
+				<div class="bg_Area feedback" style="margin-top:0px">
+				<div class="row" >
+				<h3 style="padding-left:15px"><b><u>STUDENT FEEDBACK ON MOCK TEST</u></b></h3><br />
+				<div class="col-md-6">	
+					<div class="row">
+						<div class="col-md-6">
+						<label>Name*</label>
+						<input type="text" class="form-control" ng-model="feedback.name" required='true' placeholder="Name" />
+					</div>
+					<div class="col-md-6">
+						<label>Email*</label>
+						<input type="email" name="email" class="form-control" ng-model="feedback.email" required='true'  placeholder="Email" ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" />
+					<span ng-show="feedbackForm.email.$error.pattern" style="color:red">Please enter valid email id.</span><br />
+							</div>
+					
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-4">
+							<label>Mobile*</label>
+							<input type="tel" name="phone" class="form-control" ng-model="feedback.mobileNo" required='true'  placeholder="Mobile" ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" />
+						<span ng-show="feedbackForm.phone.$error.pattern" style="color:red">Please enter valid mobile no.</span><br />
+							</div>
+						<div class="col-md-4">
+							<label>State*</label>
+							<input type="text" class="form-control" ng-model="feedback.state" required='true'  placeholder="State" />
+						</div>
+						<div class="col-md-4">
+							<label>District*</label>
+							<input type="text" class="form-control" ng-model="feedback.district" required='true'  placeholder="District" />
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label>Overall Experience of Computer Based Test:*</label>
+						<select class='form-control' required='true' ng-model="feedback.overallExprate">
+							<option value="">--Select--</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label>I could easily navigate between questions:*</label>
+						<select class='form-control' required='true' ng-model="feedback.navigatebetweenQuestion">
+							<option value="">--Select--</option>
+							<option value="true">Yes</option>
+							<option value="false">No</option>  
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label>I have understood the various marking schemes:*</label>
+						<select class='form-control' required='true' ng-model="feedback.understandMarkingScheme">
+							<option value="">--Select--</option>
+							<option value="true">Yes</option>
+							<option value="false">No</option>  
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label>I am confident of taking a CBT now:*</label>
+						<select class='form-control' required='true' ng-model="feedback.confidenceonCBT">
+							<option value="">--Select--</option>
+							<option value="true">Yes</option>
+							<option value="false">No</option>  
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label>I Found mock test extremly user friendly:*</label>
+						<select class='form-control' required='true' ng-model="feedback.userfriendyTest">
+							<option value="">--Select--</option>
+							<option value="true">Yes</option>
+							<option value="false">No</option>  
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label>Category:*</label>
+						<select class='form-control' required='true' ng-model="feedback.category">
+							<option value="">--Select--</option>
+							<option value="General">General</option>
+							<option value="Free quiz"> Free quiz</option>  
+							<option value="Enrolled quiz"> Enrolled quiz</option>  
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<label>Subject*</label>
+						<input type="text" class="form-control" required='true'  placeholder="Subject" ng-model="feedback.subject"/>
+					</div>
+					<div class="col-md-4"> 
+					</div>
+					<div class="col-md-4"> 
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<label>Feedback*</label>
+					<textarea rows="3" class="form-control" required='true'  placeholder="Feedback" ng-model="feedback.feedback"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-primary" type="button" ng-click="submitFeedback()">Submit</button>
+					</div>
+				</div>
+				</div>
+				</form>
+			 </div>
+		</div>	 
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('bg_contactus')[0].style.height = height+'px';
+		</script>
+</body>
+</html>

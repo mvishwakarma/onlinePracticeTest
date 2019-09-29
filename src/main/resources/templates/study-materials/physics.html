@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ <div ng-controller="commonPageCtrl"> 
+ 		<div class="container">
+ 			 Donwload Link
+ 		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<ul class="footer-Menu">
+						<li><a href="/about">About us</a></li>
+						<li><a href="/contact">Contact us</a></li>
+						<!-- <li><a href="/terms-of-use">Terms of use</a></li> -->
+						<li><a href="/privacy-policy">Privacy Policy</a></li>
+					</ul>
+					
+				</div>
+				<div class="col-md-4 "><p class="text-right">All Rights Reserved @2018</p></div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('container')[0].style.height = 500+'px';
+		</script>
+</body>
+</html>

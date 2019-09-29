@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="commonPageApp" >
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body >
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div ng-controller="commonPageCtrl">
+	<div class="page-title">
+		<div class="container " >  
+			<span style="padding:15px  0px 15px 0px; float:left">Mathematics</span> 
+			<span class="pull-right">
+				<small style="font-size:14px">Choose Download Language</small> 
+				<select class="form-control" ng-model="selectedLang" ng-change="setLanguage(selectedLang)">
+					<option ng-repeat="x in languageList" value="{{x.code}}">{{x.name}}</option> 
+				</select>
+			</span>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+ <div  > 
+ 		<div class="container pagecontent">
+ 			 <div ng-if="selectedLang == 'en'" class="bg_Area mt-20" style="height:650px" >
+ 			 	<!-- <div class="row"> -->
+					<div class="col-md-6" >
+						<ol>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_Basic Maths.pdf">Basic Mathematics</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_Basic Maths.pdf">Quadratic Equations</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_sequence-series.pdf">Sequence and Series (Progressions)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_binomal-theorem.pdf">Binomal Theorem</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_complex-number.pdf">Complex Number</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_determinant.pdf">Determinant</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_matrices.pdf">Matrices</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_tri.pdf">Trignometric Ratios and Identities(TRI)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_te.pdf">Trignometric Equations</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_straightline.pdf">Straight Line</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_circle.pdf">Circle</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_parabola.pdf">Parabola</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_ellipse.pdf">Ellipse</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_hyperbola.pdf">Hyperbola</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_sot.pdf">Solution of Triangles(SOT)</a></li>
+							
+						</ol>
+						
+					</div>
+					<div class="col-md-6">
+						<ol start = "16">
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_p-c.pdf">Permutation and Combination</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_probability.pdf">Probabilty</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_setandrelation.pdf">Set and Relation</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_function.pdf">Fucntion</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_itf.pdf">Inverse Trignometric Function (ITF)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_lcd.pdf">Limits, Continuity and Differentiability (LCD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_mod.pdf">Method of Differentiation(MOD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_indefinite.pdf">Indefinite Integral</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_definite.pdf">Definite Integral</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_aod.pdf">Application of Derivatives (AOD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_auc.pdf">Area Under curve</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_de.pdf">Differential Equation</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_vector-3d.pdf">Vectors and Three Dimensional Geometry</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_mr.pdf">Mathematical Reasoning</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_stats.pdf">Statistics</a></li>
+												
+						</ol>
+					</div>
+<!--  			 	</div> -->
+ 			 </div>
+ 			 
+ 			 
+ 			 <div ng-if="selectedLang == 'hi'" class="bg_Area mt-20" style="height:650px" >
+ 			 	<!-- <div class="row"> -->
+					<div class="col-md-6" >
+						<ol>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_Basic Maths.pdf">Basic Mathematics</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_Basic Maths.pdf">Quadratic Equations</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_sequence-series.pdf">Sequence and Series (Progressions)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_binomal-theorem.pdf">Binomal Theorem</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_complex-number.pdf">Complex Number</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_determinant.pdf">Determinant</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_matrices.pdf">Matrices</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_tri.pdf">Trignometric Ratios and Identities(TRI)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_te.pdf">Trignometric Equations</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_straightline.pdf">Straight Line</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_circle.pdf">Circle</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_parabola.pdf">Parabola</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_ellipse.pdf">Ellipse</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_hyperbola.pdf">Hyperbola</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_sot.pdf">Solution of Triangles(SOT)</a></li>
+							
+						</ol>
+						
+					</div>
+					<div class="col-md-6">
+						<ol start = "16">
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_p-c.pdf">Permutation and Combination</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_probability.pdf">Probabilty</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_setandrelation.pdf">Set and Relation</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_function.pdf">Fucntion</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_itf.pdf">Inverse Trignometric Function (ITF)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_lcd.pdf">Limits, Continuity and Differentiability (LCD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_mod.pdf">Method of Differentiation(MOD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_indefinite.pdf">Indefinite Integral</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_definite.pdf">Definite Integral</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_aod.pdf">Application of Derivatives (AOD)</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_auc.pdf">Area Under curve</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_de.pdf">Differential Equation</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_vector-3d.pdf">Vectors and Three Dimensional Geometry</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_mr.pdf">Mathematical Reasoning</a></li>
+							<li><a ng-href="/api/assets/downloadFile/maths_{{selectedLang}}_stats.pdf">Statistics</a></li>
+												
+						</ol>
+					</div>
+<!--  			 	</div> -->
+ 			 </div>
+ 			 
+ 		</div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<ul class="footer-Menu">
+						<li><a href="/about">About us</a></li>
+						<li><a href="/contact">Contact us</a></li>
+						<!-- <li><a href="/terms-of-use">Terms of use</a></li> -->
+						<li><a href="/privacy-policy">Privacy Policy</a></li>
+					</ul>
+					
+				</div>
+				<div class="col-md-4 "><p class="text-right">All Rights Reserved @2018</p></div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('pagecontent')[0].style.height = 500+'px';
+		</script>
+</body>
+</html>

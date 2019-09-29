@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="homeApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ 
+		<div ng-controller="HomeCtrl" >
+		<div class="container">
+			<!-- <img th:src="#{static.content.base}+AboutUs.png" src="" class="img-responsive"/> -->
+			<br />
+			<div class="bg_Area mt-0" >
+				<h4 style="color: #3278b9;"><b><u>About us</u></b></h4><br />
+				<p>Our goal is to make students comfortable in online examination for various competitive exams. In this portal student will get more than 100 free Practice Tests (Full length / Part Tests) for various exams like JEE mains, JEE Advance, BITSAT, NEET, AIIMS, VIT etc. Also we are going to provide study material for all subjects in both Hindi/English and Video lectures by Subject Expertize.</p><br />
+			 <h4 class="text-center" style="color: #3278b9;"><b>Leadership Team </b></h4><br />
+<!-- 			 <div class="row"> -->
+			 <div class="col-md-2"></div>
+			 <div class="col-md-4">
+			 	<div class="section">
+			 		<div class="immg">
+			 		  <img th:src="#{static.content.base}+S1368.jpg" /> 
+			 		  </div>
+			 		  <h4><b>Arun Sharma</b></h4>
+			 		  <h5> B.Tech (Comp. Sc.) </h5>
+			 		  <p>Faculty Mathematics</p>
+			 		  <p>Expr: 15 Years </p>
+			 	</div>
+			 		 
+			 </div>
+			 <div class="col-md-4">
+			 	<div class="section">
+			 		<div class="immg">
+			 		  <img th:src="#{static.content.base}+amarjeet.jpeg" /> 
+			 		  </div>
+			 		  <h4><b>Amarjeet Sharma</b></h4>
+			 		  <h5> B.Tech (Comp. Sc.) </h5>
+			 		  <p>Faculty Physics</p>
+			 		  <p>Expr: 16 Years </p>
+			 	</div>
+			 </div>
+			 <div class="col-md-2"></div>
+<!-- 			 </div> -->
+		
+			</div>
+			<br />
+			</div>
+		</div>
+<div style="clear:both"></div><br />
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/homeApp.js"
+		        th:src="@{/js/homeApp.js}"></script>
+		        
+</body>
+</html>

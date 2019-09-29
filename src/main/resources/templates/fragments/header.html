@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body >
+
+	<div class="header" th:fragment="header" >
+	<div class="container-fluid"  >
+	<style>
+
+</style>
+		<div class="row">
+			<div class="col-md-2 col-xs-12">
+				<div class="logo"><a href="/"><img th:src="#{static.content.base}+logo.jpeg" src=""  style="width:100%" /></a></div>
+			</div>
+			<div class="col-md-10 col-xs-12">
+			<ul class="nav navbar-nav showNav" style="padding:20px 0px 15px 0px;" >
+				<li class="active"><a href="/">Home</a></li>
+				<!-- This is dynamic menu-->
+					<li id="practiceTestMenu"><a class="dropdown-toggle" data-toggle="dropdown"  href="javascript:void(0)" ></a>
+					     	<ul class="dropdown-menu">
+					          <li><a href="/video-lectures">Mathematics</a></li>
+					        </ul>
+					     </li>
+					     <!-- <li><a href="/quizLists" >Practise Test</a></li> -->
+					     <li><a class="dropdown-toggle" data-toggle="dropdown"  href="javascript:void(0)">Video Lectures</a>
+					     	<ul class="dropdown-menu">
+					          <li><a href="/video-lectures">Mathematics</a></li>
+					        </ul>
+					     </li>
+					     <li><a class="dropdown-toggle" data-toggle="dropdown"  href="javascript:void(0)">Study Materials</a>
+					     	<ul class="dropdown-menu">
+					          <li><a href="/study-materials/maths">Mathematics</a></li>
+					        </ul>
+					     </li>
+					     <li><a href="/free-eBooks">Free E-Books</a></li>
+						<li ><a class="dropdown-toggle" data-toggle="dropdown"  href="javascript:void(0)">EduStore</a>
+							<ul class="dropdown-menu">
+					          <li sec:authorize="isAuthenticated()"><a href="/training-quizes">Training Quizes</a></li>
+					          <li><a href="/packages">Packages</a></li>
+					        </ul>
+						</li>
+			</ul>
+			<ul class="pull-right nav navbar-nav showNav" style="padding:20px 0px 15px 0px;" sec:authorize="!isAuthenticated()">
+				 <li><a href="/user/login">SignIn</a></li> 
+				  <li style="border-left:1px solid #fff"><a href="/user/registration" >SignUp</a></li>
+			</ul>
+			<ul class="pull-right nav navbar-nav showNav " style="padding:20px 0px 15px 0px;" sec:authorize="isAuthenticated()">
+				<li><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><span sec:authentication="name" >Guest</span></a>
+					<ul class="dropdown-menu userNameDrop">
+		          		<li><a href="/logout">Logout</a></li>
+			        </ul>
+				</li>
+			</ul>
+			<div class="pull-right" style="padding:10px 0px 10px 0px">
+				<ul class="nav navbar-nav pull-right ">
+				 		
+                       <li class="user-profile hide" ng-class="{'show':timerOn}">
+                           <table>
+                               <tbody><tr>
+                                   <td><img src="../../images/userImage.png" /></td>
+                                   <td>
+                                       <table>
+                                           <tbody><tr>
+                                               <td style="padding: 0px 5px;">Candidate Name</td>
+                                          		<td sec:authorize="!isAuthenticated()"> : <span style="color: #f79439; font-weight: bold" >Guest</span></td>
+                                               <td sec:authorize="isAuthenticated()"> : <span style="color: #f79439X	; font-weight: bold"  sec:authentication="name">[Your Name]</span></td>
+                                           </tr>
+                                           <tr>
+                                               <td style="padding: 0px 5px;">Subject Name</td>
+                                               <td > : <span style="color: #f79439; font-weight: bold" th:text="${quiz?.name}">[Test Practice]</span>
+                                               </td>
+                                           
+                                           </tr>
+                                           <tr>
+                                               <td style="padding: 0px 5px;">Remaining Time</td>
+                                               <td>
+                                                   : <span class="timer-title time-started" ng-if="timerOn">{{hours | standardize}}:{{minutes | standardize}}:{{sec | standardize}}</span>
+                                               </td>
+                                           </tr>
+                                       </tbody></table>
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </li>
+                                </ul>
+			</div>		
+			</div>
+		</div>
+		 
+	</div> 
+		 <div th:replace="fragments/angular :: angular"></div>
+		
+	<script type="text/javascript" src="../js/headerController.js"
+		        th:src="@{/js/headerController.js}"></script>
+	</div>
+
+</body>
+</html>

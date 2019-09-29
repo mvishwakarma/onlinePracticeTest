@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div ng-controller="commonPageCtrl">
+	<div class="page-title">
+		<div class="container " >  
+			<span style="padding:15px  0px 15px 0px; float:left">Free E-Books</span> 
+			<span class="pull-right"> 
+			</span>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+	<div class="container pagecontent">
+		<div class="bg_Area mt-20" > 
+					<div class="col-md-9"></div>
+					<div class="col-md-3">
+						<select class="form-control" ng-model="selectedStream" ng-change="changeStream(selectedStream,0)" style="    text-transform: uppercase;">
+							<option ng-repeat="x in streamList" value="{{x.name}}">{{x.name}}</option>  
+						</select>
+					</div> 
+			<br />  
+			<div class="paper_sections" ng-repeat="x in finalRes" ng-show="finalRes.length>0"> 
+				<h4><b>{{x.tag}}</b></h4><br />
+				<div>
+				<div class="row">
+					<div class="col-md-3" ng-repeat="y in x.data">
+						<div class="ebook_card"> 
+							<div class="ebook_image" ng-mouseover="showDescription('showDescription_'+y.id+'_'+$parent.$index)" ng-mouseleave="hideDescription('showDescription_'+y.id+'_'+$parent.$index)">
+								<img ng-src="{{y.thumbNailPath}}"/>
+							</div>
+							<div class="ebook_content">
+								<div><b><a>{{y.bookName}}</a></b></div>
+								<span>{{y.authorName}}</span> 
+								<br />
+							</div> 
+							<button ng-click="downloadEbooks(y.path)" class="btn btn-primary" >Download</button>
+							<div class="card_overlay" id="showDescription_{{y.id}}_{{$parent.$index}}" ng-mouseover="showDescription('showDescription_'+y.id+'_'+$parent.$index)" ng-mouseleave="hideDescription('showDescription_'+y.id+'_'+$parent.$index)">
+								<p><b>{{y.bookName | limitTo:90}}</b></p>
+								<br />
+								<div class="overlay_image">
+								<img ng-src="{{y.thumbNailPath}}" width="150px" height="220px" style="object-fit:cover" />
+								<div>
+									<ul>  
+										<li><b>Author:</b><br />{{y.authorName}}</li>
+										<li><b>Language:</b><br />{{y.language}}</li>
+										<li><b>Published:</b><br />{{y.createdDate | date: 'MM-dd-yyyy' }}</li>
+									</ul>
+								</div>
+								</div>
+								<br />
+								<p>{{y.description | limitTo:100}}</p>
+								<br />
+								<p>Formats:<b>PDF</b></p>
+							</div> 
+						</div> 
+					</div> 
+				</div>
+				</div>
+			</div>
+			<div ng-show="finalRes.length==0" style="font-size: 30px; text-align: center;   height: 400px;">No Result Found</div>
+			<br /> 
+		</div>
+	</div>
+	</div>
+	 
+	
+<div th:replace="fragments/footer :: footer">...</div>
+<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+</body>
+</html>

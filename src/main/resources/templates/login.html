@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div class="signInBg">
+	<div class="container">
+	<br />
+		
+		<div class="col-sm-6">
+			<div class="bg_Area">
+			<h3 th:text="#{label.signin.title}" class="form-signin-heading" >SIGN IN</h3>
+			<br />
+			<p th:if="${logoutSuccessful}" th:text="#{label.signin.logoutrmessage}" class="error">logout Successful,Please login again</p>
+			<form name='f' action='/user/login' method='POST' class="form-signin" onsubmit="return validateRecaptcha()">
+		       <label th:text="#{label.user.email}" >email</label>
+		        <input th:placeholder="#{label.signin.email}" name="username" class="form-control" required="true" autofocus="true"></input>
+		       <br />
+		       <label th:text="#{label.user.password}">password</label>
+		        <input th:placeholder="#{label.signin.password}" type="password" name="password" class="form-control" required="true"></input>
+		        
+		        <p th:if="${loginError}" th:text="#{label.signin.errorrmessage}" class="error">Wrong user or password</p>
+		        <div th:if="${loginError}" class="g-recaptcha" data-sitekey="6Lfc5oQUAAAAAE3CP3fWHj8DEZlHKFBh0AjDnQgT" style="margin-left: 36%;"></div>
+				<p style="color:red;text-algin:center; display:none" id="showRecaptchaErrMsg">*Please verify recaptcha</p>
+		        <div class="checkbox">
+		          <label>
+		            <input th:text="#{label.signin.rememberme}" type="checkbox" name="remember-me"> Remember me </input>
+		          </label>
+		        </div>
+		        
+		        <button th:text="#{label.signin.submit}" class="btn btn-lg btn-primary orange_btn btn-block" type="submit" onclick="">Sign in</button>
+			</form>
+			
+			<a href="/user/forgotPassword" tx:text="#{label.signin.forgotpassword}">Forgot my Password</a>
+			</div>
+		</div>
+		
+		<div class="col-sm-6"></div>
+	</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('signInBg')[0].style.height = height+'px';
+			
+			function validateRecaptcha(){ 
+				 var recaptcha = document.getElementById('g-recaptcha-response').value;
+				 if(!recaptcha){
+					 document.getElementById('showRecaptchaErrMsg').style.display = 'block';
+					 return false;
+				 }else{
+					 document.getElementById('showRecaptchaErrMsg').style.display = 'none';
+					 return true;	 
+				 }
+				
+			}
+		</script>
+		<script src="https://www.google.com/recaptcha/api.js" ></script>
+</body>
+</html>

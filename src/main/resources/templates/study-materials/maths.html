@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="commonPageApp" >
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body >
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div ng-controller="commonPageCtrl">
+	<div class="page-title">
+		<div class="container " >  
+			<span style="padding:15px  0px 15px 0px; float:left">Mathematics</span> 
+			<span class="pull-right">
+				<small style="font-size:14px">Choose Download Language</small> 
+				<select class="form-control" ng-model="selectedLang" ng-change="setLanguage(selectedLang)">
+					<option ng-repeat="x in languageList" value="{{x.code}}">{{x.name}}</option> 
+				</select>
+			</span>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+ <div  > 
+ 		<div class="container pagecontent">
+ 			 <div ng-if="selectedLang == 'en'" class="bg_Area mt-20" style="height:450px" >
+ 			 	<!-- <div class="row"> -->
+					<div class="col-md-6" >
+						<ol>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'Basic-Maths')">Basic Mathematics</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'qe')">Quadratic Equations</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'sequence-series')">Sequence and Series (Progressions)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'binomal-theorem')">Binomal Theorem</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'complex-number')">Complex Number</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'determinant')">Determinant</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'matrices')">Matrices</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'tri')">Trignometric Ratios and Identities(TRI)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'te')">Trignometric Equations</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'straightline')">Straight Line</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'circle')">Circle</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'parabola')">Parabola</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'parabola')">Ellipse</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'hyperbola')">Hyperbola</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'sot')">Solution of Triangles(SOT)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'p-c')">Permutation and Combination</a></li>
+							
+						</ol>
+						
+					</div>
+					<div class="col-md-6">
+						<ol start = "17">
+							
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'probability')">Probabilty</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'setandrelation')">Set and Relation</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'function')">Fucntion</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'itf')">Inverse Trignometric Function (ITF)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'lcd')">Limits, Continuity and Differentiability (LCD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'mod')">Method of Differentiation(MOD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'indefinite')">Indefinite Integral</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'definite')">Definite Integral</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'aod')">Application of Derivatives (AOD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'auc')">Area Under curve</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'de')">Differential Equation</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'vector-3d')">Vectors and Three Dimensional Geometry</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'mr')">Mathematical Reasoning</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'stats')">Statistics</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'h-d')">Height and Distance</a></li>
+												
+						</ol>
+					</div>
+<!--  			 	</div> -->
+ 			 </div>
+ 			 
+ 			 
+ 			 <div ng-if="selectedLang == 'hi'" class="bg_Area mt-20" style="height:450px" >
+ 			 	<!-- <div class="row"> -->
+					<div class="col-md-6" >
+						<ol>
+						
+						
+						<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'Basic-Maths')">बुनियादी गणित</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'qe')">द्विघात समीकरण</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'sequence-series')">अनुक्रम एवं श्रेणियां</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'binomal-theorem')">द्विपद प्रमेय</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'complex-number')">सम्मिश्र संख्याए</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'determinant')">सारणिक</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'matrices')">आव्यूह</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'tri')">त्रिकोणमितीय अनुपात एवं सर्वसमिका(TRI)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'te')">त्रिकोणमितीय समीकरण</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'straightline')">सरल रेखा</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'circle')">वृत्त</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'parabola')">परवलय</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'parabola')">दीर्घवृत्त</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'hyperbola')">अति परवलय</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'sot')">त्रिभुज के गुण धर्म(SOT)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'p-c')">क्रमचय एवं संचय</a></li>
+						</ol>
+						
+					</div>
+					<div class="col-md-6">
+						<ol start = "17">
+							
+							
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'probability')">प्रायिकता</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'setandrelation')">समुच्चय और संबंध</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'function')">फलन</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'itf')">प्रतिलोम त्रिकोणमिति फलन(ITF)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'lcd')">सीमा,संतता और अवकलनीयता(LCD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'mod')">अवकलन की विधियाँ(MOD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'indefinite')">अनिश्चित समाकलन</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'definite')">निश्चित समाकलन</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'aod')">अवकलन के अनुप्रयोग(AOD)</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'auc')">वक्रों से परिवद्द क्षेत्रफल</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'de')">अवकल समीकरण</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'vector-3d')">सदिश एवं त्रिविमीय ज्यामिति</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'mr')">गणितीय तर्कशक्ति</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'stats')">सांख्यिकी</a></li>
+							<li><a ng-href="javascript:void(0)" ng-click="downloadStudyMaterials(selectedLang,'h-d')">ऊंचाई एवं दूरी</a></li>
+			
+								</ol>
+					</div>
+<!--  			 	</div> -->
+ 			 </div>
+ 			 
+ 		</div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<ul class="footer-Menu">
+						<li><a href="/about">About us</a></li>
+						<li><a href="/contact">Contact us</a></li>
+						<!-- <li><a href="/terms-of-use">Terms of use</a></li> -->
+						<li><a href="/privacy-policy">Privacy Policy</a></li>
+					</ul>
+					
+				</div>
+				<div class="col-md-4 "><p class="text-right">All Rights Reserved @2018</p></div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('pagecontent')[0].style.height = 500+'px';
+		</script>
+</body>
+</html>

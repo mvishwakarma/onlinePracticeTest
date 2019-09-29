@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+	<img th:src="#{static.content.base}+comingSoon1.jpeg" src="" style="width:100%; height:500px"/>
+	<!-- <div class="container" ng-controller="commonPageCtrl">
+	<img th:src="#{static.content.base}+comingSoon1.jpeg" src="" class="img-responsive"/>
+	<br />
+		<div class="col-sm-3"></div>
+		
+		<div class="col-sm-6">
+		</div>
+		
+		<div class="col-sm-3"></div>
+	</div> -->
+	<div th:replace="fragments/footer :: footer">...</div>
+<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+</body>
+</html>

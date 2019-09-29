@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="playQuizApp" th:attr="ng-init='quizId='+${quiz.id}" >
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div class="page-title">
+		<div class="container">
+			<p th:text="${quiz.name}">Quiz Title</p>
+		</div>
+	</div>
+	<br />
+	<div ng-controller="PlayQuizCtrl"> 
+	<div class="exam-Summary" ng-if="!viewResult">
+		<div class="container">
+			 
+			<h3 class="text-center"><b>Thank you, Submitted Successfully.</b></h3><br />
+			<div class="text-center">
+				<button class="btn btn-primary white_btn" ng-click="viewResultFn()">View Result</button>
+			</div>
+		</div>
+		
+	</div>
+	<div class="container" ng-if="viewResult"> 
+		<div class="col-sm-2"></div> 
+		<div class="col-sm-8" >		
+			<div >
+				<h2 th:text="${quiz.name}" class="form-signin-heading text-center">...</h2>
+				<hr/>	
+				
+				<h1 class="text-center">{{ Math.round((viewReport.correctQuestions * 100)  / viewReport.totalQuestions) }}%</h1>
+				
+				<h3 class="text-center">{{viewReport.correctQuestions}} / {{viewReport.totalQuestions}}</h3>
+			</div>
+			
+		</div>
+		
+		<div class="col-sm-2"></div>
+	</div>
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	 
+	 
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/playApp.js"
+		        th:src="@{/js/playApp.js}"></script>
+</body>
+</html>

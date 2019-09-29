@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="homeApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+
+	<div class="container">
+
+		<div ng-controller="HomeCtrl" class="page_body">
+			
+			<div>
+				<!-- <h1 th:text="#{label.home.welcome}">Welcome to QuizZz!</h1> -->
+				<br/>
+			</div> 
+			<div class="row">
+				
+				<div class="col-md-12"> 
+				<ul class="nav nav-tabs tabss">
+				  <li class="active"><a data-toggle="tab" href="#free">Free Quizes</a></li>
+				  <li><a data-toggle="tab" href="#enrolled">Enrolled Quizes</a></li>
+				</ul>
+				<div class="tab-content"> 
+				  <div id="free" class="tab-pane fade in active">
+				    <!-- <p><b>Free Quizes</b></p> -->
+					<table class="table table-hover" align="center" ng-if="freeQuizesData.length">
+						<thead>
+							<tr>
+								<th th:text="#{label.home.maintable.headers.quiz}" width="70%">Quiz</th> 
+								<th><div style="float:right">Play</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="quiz in freeQuizesData track by $index">
+								<td>
+									<p style="font-size: 16px;">{{quiz.name}}</p>
+									<h4><small class="text-muted text_orange">{{quiz.description}}</small></h4>
+								</td> 
+								<td >
+								<div style="float:right">
+									<a href="/quiz/{{quiz.id}}" class="btn btn-primary" ng-click="saveQuestionPortions(quiz)">
+										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+									</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p  class="noquiz" ng-if="!freeQuizesData.length">No Quizes Found</p>
+					<br />
+					<div class="text-center" ng-if="freeQuizesData.length">
+						<button th:text="#{label.home.maintable.loadmore}" class="btn btn-default" ng-click="loadNextPage('free')" ng-show="pagination.freeMorePagesAvailable">Load more...</button>
+					</div>
+				  </div>
+				  <div id="enrolled" class="tab-pane fade">
+				    <!-- <p><b>Enrolled Quizes</b></p> -->
+					<table class="table table-hover" align="center" ng-if="enrolledQuizesData.length">
+						<thead>
+							<tr>
+								<th th:text="#{label.home.maintable.headers.quiz}" width="70%">Quiz</th> 
+								<th ><div style="float:right">Play</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="quiz in enrolledQuizesData track by $index">
+								<td>
+									<p>{{quiz.name}}</p>
+									<h5><small class="text-muted text_orange">{{quiz.description}}</small></h5>
+								</td> 
+								<td >
+								<div style="float:right">
+									<a href="/quiz/{{quiz.id}}" class="btn btn-primary" ng-click="saveQuestionPortions(quiz)">
+										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+									</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p  class="noquiz" ng-if="!enrolledQuizesData.length">No Quizes Found</p>
+					<br />
+					<div class="text-center" ng-if="enrolledQuizesData.length">
+						<button th:text="#{label.home.maintable.loadmore}" class="btn btn-default" ng-click="loadNextPage('enrolled')" ng-show="pagination.enrolledMorePagesAvailable">Load more...</button>
+					</div>
+				  </div>
+				</div>  
+				
+				</div>
+			</div>	
+			<!-- <table class="table table-hover" align="center">
+				<thead>
+					<tr>
+						<th th:text="#{label.home.maintable.headers.quiz}" width="70%">Quiz</th>
+						<th th:text="#{label.home.maintable.headers.questions}">Questions</th>
+						<th th:text="#{label.home.maintable.headers.times}">Times played</th>
+						<th th:text="#{label.home.maintable.headers.play}">Play!</th>
+					</tr>
+				</thead>
+				<tbody>				
+					<tr ng-repeat="quiz in quizzes">
+						<td>
+							<h4>{{quiz.name}}</h4>
+							<h5><small class="text-muted">{{quiz.description}}</small></h5>
+						</td>
+						<td>
+							<p>20</p>
+						</td>
+						<td>
+							<p>5033</p>
+						</td>
+						<td>
+							<a href="/quiz/{{quiz.id}}" class="btn btn-primary" ng-click="saveQuestionPortions(quiz)">
+								<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table> -->
+			
+			
+			
+		</div>
+
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div class="loader" style="display:none">
+		<img th:src="#{static.content.base}+loader.gif" src="" />
+	</div>
+	<script>
+		var elm = document.getElementsByClassName('loader')[0];
+		function showLoader(){
+			elm.style.display = 'block';
+		}
+		showLoader();
+		function hideLoader(){
+			elm.style.display = 'none';
+		}
+	</script>
+	<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/homeApp.js"
+		        th:src="@{/js/homeApp.js}"></script>
+		        
+</body>
+</html>

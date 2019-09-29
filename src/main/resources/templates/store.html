@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+	<div ng-controller="commonPageCtrl">
+	<div class="page-title">
+		<div class="container " >  
+			<span style="padding:15px  0px 15px 0px; float:left">Packages</span> 
+			<span class="pull-right">
+			</span>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+	<div class="container pagecontent">
+		<div class="bg_Area mt-20" > 
+					<div class="col-md-9"></div>
+					<div class="col-md-3">
+						<select class="form-control" ng-model="selectedStream" ng-change="changeStream(selectedStream,1)" style="    text-transform: uppercase;">
+							<option ng-repeat="x in streamList" value="{{x.name}}">{{x.name}}</option>  
+						</select>
+					</div> 
+			<br /> 
+			<div class="paper_sections" ng-repeat="x in finalRes"> 
+				<h4><b>{{x.tag}}</b></h4><br />
+				<div>
+				<div class="row">
+					<div class="col-md-3" ng-repeat="y in x.data">
+						<div class="ebook_card">
+							<div class="ebook_image" ng-mouseover="showDescription('showDescription_'+y.id+'_'+$parent.$index)" ng-mouseleave="hideDescription('showDescription_'+y.id+'_'+$parent.$index)">
+								<img ng-src="{{y.thumbNailPath}}"/>
+							</div>
+							<div class="ebook_content">
+								<div><b><a href="">{{y.name}}</a></b></div>
+								<span><b>&#x20B9; {{y.packPrize}}/-</b></span>
+								<span style="float:right">Target {{y.createdDate | date: 'yyyy'}}</span>
+								<br />
+							</div> 
+							<button ng-click="togglePayMentPopup(y)" class="btn btn-primary" >BUY NOW</button>
+							<div class="card_overlay" id="showDescription_{{y.id}}_{{$parent.$index}}" ng-mouseover="showDescription('showDescription_'+y.id+'_'+$parent.$index)" ng-mouseleave="hideDescription('showDescription_'+y.id+'_'+$parent.$index)">
+								<p><b>{{y.name | limitTo:90}}</b></p>
+								<br />
+								<div class="overlay_image">
+								<img ng-src="{{y.thumbNailPath}}" width="150px" height="220px" style="object-fit:cover" />
+								<div>
+									<ul>
+										<li><b>Quiz Counts:</b><br />{{y.quizCount}}</li>
+										<li><b>Pages:</b><br />30</li>
+										<li><b>Published:</b><br />{{y.createdDate | date: 'MM-dd-yyyy' }}</li>
+									</ul>
+								</div>
+								</div>
+								<br />
+								<p>{{y.description | limitTo:100}}</p>
+								<br /> 
+							</div> 
+						</div> 
+					</div> 
+				</div>
+				</div>
+			</div>
+			<div ng-show="finalRes.length==0" style="font-size: 30px; text-align: center;   height: 400px;">No Result Found</div>
+			<br /> 
+		</div>
+	</div>
+		<!-- Payment Popup -->
+	<div class="popupOverlay" ng-if="showPaymentPopup">
+		<div class="popSection">
+			<a href="javascript:void(0)" class="canclePop" ng-click="togglePayMentPopup()">X</a>
+			<h4 class="popHeading"><b>Initiate Payment </b></h4>
+			<br />
+			<p>Amount to pay: {{quizObj.packPrize}}/-</p>
+			<form name="payForm">
+				<div class="form-group text-center mt-10">
+					<input type="text" name="mobile" class="form-control" placeholder="Enter Your Mobile No." ng-model="buyQuiz.mobile"  required="true" ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/"/>
+					<span ng-show="payForm.mobile.$error.pattern" style="color:red">Please enter valid mobile no.</span><br />
+					<button class="btn btn-primary" ng-click="initPay()">Proceed</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+	<div class="loader" style="display:none">
+		<img th:src="#{static.content.base}+loader.gif" src="" />
+	</div>
+	 	<script>
+		var elm = document.getElementsByClassName('loader')[0];
+		function showLoader(){
+			elm.style.display = 'block';
+		} 
+		function hideLoader(){
+			elm.style.display = 'none';
+		}
+	</script>
+	
+<div th:replace="fragments/footer :: footer">...</div>
+<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+</body>
+</html>

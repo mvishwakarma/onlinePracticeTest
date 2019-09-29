@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="homeApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ 
+		<div ng-controller="HomeCtrl" >
+		<div class="container">
+			 <div class="row">
+			 	<div class="bg_Area mt-0" style="margin-top:30px">
+				<div class="col-md-4"><div class="immg"> <img th:src="#{static.content.base}+Online-Test1.jpg" /> </div></div>
+				<div class="col-md-8">
+					<h4><b>Competitive Exams Practice Tests</b></h4><br />
+					<p>This online portal is project of Arun Sharma Sir (Mathematics
+						faculty, Expr: 15 years) in association with Amarjeet Sharma Sir
+						(Physcis faculty, Expr: 16 yrs) to enhance the performance of
+						students in upcoming exams. In this portal student will get 100 free
+						Full length Practice Tests (initially for JEE Mains) , after that more
+						sample papers for other exams will be launched for Competitive
+						Exams.</p>
+				</div>
+				</div>
+			 </div>
+			</div>
+		</div>
+<div style="clear:both"></div><br />
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/homeApp.js"
+		        th:src="@{/js/homeApp.js}"></script>
+		        
+</body>
+</html>

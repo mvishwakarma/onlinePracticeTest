@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ <div ng-controller="commonPageCtrl">
+		<div class="bg_contactus">
+			<div class="container">
+			<br/>
+			<div class="col-md-1"></div>
+			<div class="col-md-10 contact_box">
+				<div class="">
+					<h3 class="text-center" ng-if="!contactType"><b>CONTACT US</b></h3><br />
+					<h3 class="text-center" ng-if="contactType"><b>Enrollment Request</b></h3><br />
+					<div class="col-md-6" ng-if="!contactType">
+						<h4><b>Contact Information</b></h4><hr />
+						<ul class="list">
+							<li><b>Monday-Friday:</b> 9:00AM to 8:00PM </li>
+							<li><b>Address:</b> Indore(MP) </li>
+							<li><b>Pin Code:</b> 452016 </li>
+							<!-- <li><b>Phone No.:</b> +91-9200425737 </li> -->
+							<li><b>Email Id:</b> practiceonline.jee@gmail.com </li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<h4 ng-if="!contactType"><b>Leave us a message</b></h4>
+						<h4 ng-if="contactType"><b>Please submit below form for enroll in {{enrollQuizName}}.</b></h4><hr />
+						
+						<form name="contactForm">
+							<input type="text" class="form-control" required="true" ng-disabled="contactType=='enrollReq'" ng-model="contact.name" placeholder="Name" /><br />
+							<input type="text" name="email" class="form-control" required="true"   ng-model="contact.email" placeholder="Email"  ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/"/>
+							<span ng-show="contactForm.email.$error.pattern" style="color:red">Please enter valid email id.</span><br />
+							<input type="tel" name="phone" class="form-control" required="true"  ng-model="contact.phoneNo" placeholder="Mobile No." ng-pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/"/>
+							<span ng-show="contactForm.phone.$error.pattern" style="color:red">Please enter valid mobile no.</span><br />
+							<textarea rows="4" class="form-control" required="true" ng-disabled="contactType=='enrollReq'" ng-model="contact.message" placeholder="Query"></textarea><br />
+							<button class="btn btn-primary " style="float:right" ng-click="submitQuery()">SUBMIT</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+			</div>
+		</div>	
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('bg_contactus')[0].style.height = height+'px';
+		</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ <div ng-controller="commonPageCtrl"> 
+ 		<div class="container">
+ 			<div class="col-md-12">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="paymentResponseCard">
+						<div class="pageTitle">Payment Status</div>
+						<div class="paymentBody">
+							<div style="text-align:center"><img th:src="#{static.content.base}+green-tick.ico" src="" style="width:35px" ng-if="paymentStatus.pgOrderStatus == 'completed'" />
+							<img th:src="#{static.content.base}+failed.jpg" src="" style="width:35px" ng-if="paymentStatus.pgOrderStatus == 'Failed'" />
+							&nbsp; <b>{{paymentStatus.pgOrderStatus}}</b>
+							</div>
+							<br />
+							<table style="Width:100%" class="table table-strip table-bordered">
+								<tr>
+									<td>Payment Status</td>
+									<td>{{paymentStatus.pgOrderStatus}}</td>
+								</tr>
+								<tr>
+									<td>Transaction Id</td>
+									<td>{{paymentStatus.pgTxnId}}</td>
+								</tr>
+								<tr>
+									<td>Payment Insta Mojo Id</td>
+									<td>{{paymentStatus.pgPaymentId}}</td>
+								</tr>
+								<tr>
+									<td>User Order Id</td>
+									<td>{{paymentStatus.pgId}}</td>
+								</tr>
+							</table>
+							<div style="text-align:center">
+								<a href="/quizLists" class="btn btn-primary">Ok</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+ 			</div>
+ 		</div>
+	</div>
+<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('container')[0].style.height = 500+'px';
+		</script>
+</body>
+</html>

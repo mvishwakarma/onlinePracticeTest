@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="commonPageApp">
+
+	<div th:replace="fragments/header :: header">...</div>
+ 
+		<div ng-controller="commonPageCtrl" >
+		<div class="container">
+			<!-- <img th:src="#{static.content.base}+AboutUs.png" src="" class="img-responsive"/> -->
+			<br />
+			<div class="bg_Area mt-0" >
+				<h4 style="color: #3278b9;"><b><u>How to Register on http://onlinepractice.net</u></b></h4><br />
+				<p>1.Write http://onlinepractice.net is address bar of your web browser.</p><br />
+			<p>2.After step 1, the website open and prompt for sign In.</p><br />
+			<img th:src="#{static.content.base}+step1.png" src="" /><br />
+			<p>3.If you have already a User ID/Password the write those credential and go to “Practice test” Tab in menu Bar. There 15 Free Mock Test for JEE mains are available. Start those tests and enhance your performance.</p><br />
+			<p>4.If you don’t have UserID/Password the go to the “SignUP” tab in menu bar.</p><br />
+		<p>&nbsp;&nbsp;a.A new page open</p> <br /> 
+		<p>&nbsp;&nbsp;b.In that Page write the details like below</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step2.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;c.Now click on Register button, a new page will open like below</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step3.png" src="" /><br />  <br /> 
+		<p>&nbsp;&nbsp;d.Now go to inbox of that mail, you will get a mail from practiceonlie.jee@gmail.com . click on the link found in that email. The mail in you inbox will be like this</p><br />  
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step4.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;e.When you click on that link you will get a new window like this</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step5.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;f.After that go to “Sign In” Tab and write username or Email. Also write password which you create for this website</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step6.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;g.Now click on Sign In button. You will be logged-in website.</p><br /> 
+		<p>&nbsp;&nbsp;h.Now go to “Practice Test” tab in Menu Bar, you will get this type of window.</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step7.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;i.Now click on any Test you will be directed to General Instruction Page like below. Now accept the terms and condition tab and then click “Play Now” button.</p> <br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step8.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;j.After above step Mock test Starts.</p><br /> 
+		&nbsp;&nbsp;<img th:src="#{static.content.base}+step9.png" src="" /><br /> <br /> 
+		<p>&nbsp;&nbsp;k. Now give Test and follow instructions.</p><br/>
+<p>Best of luck for your future..</p>
+			</div>
+						<br />
+			</div>
+		</div>
+
+	<div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular">...</div>
+	<script type="text/javascript" src="../js/commonMenuPageController.js"
+		        th:src="@{/js/commonMenuPageController.js}"></script>
+		<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('bg_contactus')[0].style.height = height+'px';
+		</script>     
+</body>
+</html>

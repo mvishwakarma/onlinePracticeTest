@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="playQuizApp" th:attr="ng-init='quizId='+${quiz.id}"  onload="checkForMenu()">
+<div ng-controller="PlayQuizCtrl">
+	<div th:replace="fragments/header :: header">...</div>
+	<div class="page-title">
+		<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<span th:text="${quiz.name}" style="padding:15px  0px 15px 0px; float:left">Quiz Title</span>
+				<div class="exam_section" ng-if="isPlaying">
+					<button class="btn btn-success blue_btn" ng-repeat="(k,v) in qPortions" ng-click="setQuestion(v-1)">{{k}}</button> 
+				</div>
+			</div>
+			<div class="col-md-4">
+			<div ng-if="isPlaying">
+				<span class="pull-right"><small style="font-size:14px">Choose Your Default Language</small>
+				<select class="form-control" ng-model="selectedLang" ng-change="setLanguage(selectedLang)">
+					<option ng-repeat="x in languageList" value="{{x.code}}">{{x.name}}</option> 
+				</select>
+				</span> 
+				</div>
+			
+			<!-- <span class="pull-right"><small style="font-size:14px">Download Paper</small>
+				<button class="btn btn-success blue_btn" style="display:block; margin-right:45px" >Download</button>
+			</span>  -->
+			</div>
+		</div>
+			
+			
+			
+		</div>
+	</div>
+	<br />
+	
+	<div class="container" ng-if="isPlaying" >
+		<div class="row">
+			<div class="col-md-8">
+			
+			<div class="bg_Area mt-0" >
+				<h4><b>Questions {{currentQuestion.index+1}}:</b><span class="pull-right"><img src="../../images/down.png" ng-click="scrollTo('questionArea', 'bottom')" /></span></h4>
+				<hr />
+				<div class="questionArea" id="questionArea">
+				<div id="questionTop"></div>  
+					<img ng-src="{{'https://s3.ap-south-1.amazonaws.com/onlinepractice/'+'questionbank/'+quizId + '/'+selectedLang +'/'+currentQuestion.imagepath}}" />
+				
+					<ul class="answers">
+					<li ng-repeat="answer in currentAnswers">
+						
+						<div ng-if="currentQuestion.isMorethenOneCorrect"> 
+							<input value="{{answer.id}}" check-list='multiAnswersChecked[currentQuestion.id]'  type="checkbox" ng-model="selectedAnswer.answer"  />{{answer.text}}
+						</div>
+		        		<div ng-if="!currentQuestion.isMorethenOneCorrect">	
+		        			<div class="radio">
+		        				<input type="radio" ng-model="selectedAnswer.answer" value="{{answer.id}}"  name="answerChoices">{{answer.text}}</input>
+		        		</div>
+		        		</div>
+					</li>
+				</ul>
+				<span class="pull-right"><img src="../../images/up.png" ng-click="scrollTo('questionArea', 'top')" /></span>
+				<div id="questionBottom"></div>
+				</div>
+				
+				</div>
+				
+			<div class="action_buttons text-center">
+				<button class="btn btn-success" ng-click="answerQuestion(selectedAnswer.answer, currentQuestion.isMorethenOneCorrect)">Save &amp; Next</button>
+				<button class="btn btn-success orange_btn" ng-click="saveAndMark(currentQuestion, selectedAnswer.answer, currentQuestion.isMorethenOneCorrect)">Save &amp; Mark For Review</button>
+				<button class="btn btn-success white_btn" ng-click="clearResponse(currentQuestion, currentQuestion.isMorethenOneCorrect)">Clear Response</button>
+				<button class="btn btn-success blue_btn" ng-click="markReviewAndNext(currentQuestion, selectedAnswer.answer, currentQuestion.isMorethenOneCorrect)">Mark For Review &amp; Next</button>
+			</div> 
+			<div class="action_buttons">
+				<button class="btn btn-success white_btn" ng-click="showPrevious(currentQuestion,answerChoices)">&lt;&lt; Back </button>
+				<button class="btn btn-success white_btn" ng-click="showNext(currentQuestion, answerChoices)">Next &gt;&gt;</button>
+				<button class="btn btn-success pull-right" ng-click="submit_all()"><b>SUBMIT</b></button>
+			</div> 
+			</div>
+			<div class='col-md-4'>
+				<table >
+					<tr> 
+						<td class="tdWidth"><a class="quizQuestion-stats  not-attempted">{{counts.not_visited}}</a> Not Visited </td>
+						<td class="tdWidth"><a class="quizQuestion-stats not-Answered">{{counts.not_answered}}</a> Not Answered </td> 
+					</tr>
+					<tr>
+						<td class="tdWidth"><a class="quizQuestion-stats answered">{{counts.answered}}</a> Answered</td>
+						<td class="tdWidth"><a class="quizQuestion-stats mark-Review">{{counts.mark_for_review}}</a> Mark for review </td> 
+					</tr>
+					<tr>
+						<td class="tdWidth" colspan="2"><a class="quizQuestion-stats answered_Marked_Review">{{counts.answered_marked_review}}</a> Answered &amp; Marked for Review (will be considered for evaluation)</td>
+						 
+					</tr>
+				</table>
+				<br />
+				<div class="questionLists">
+				<ul>
+					<li ng-repeat="x in questionList" ><a class="quizQuestion-stats " ng-class="setBgClass(x)" ng-click="setQuestion(x.index)">{{x.index+1 | standardize}}</a></li>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Exam Summary -->
+	<div class="exam-Summary" ng-if="showExamSummary" style="height: 500px;">
+		<div class="container">
+			<h3 class="text-center"><b>Exam Summary</b></h3><br />
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr>
+						<td><b>Section Name</b></td>
+						<td><b>No. of Questions</b></td>
+						<td><b>Answered</b></td>
+						<td><b>Not Answered</b></td>
+						<td><b>Marked for review</b></td>
+						<td><b>Answered &amp; Marked for Review (will be considered for evaluation)</b></td>
+						<td><b>Not Visited</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${quiz.name}">Section Name</td>
+						<td>{{totalQuestions}}</td>
+						<td>{{counts.answered}}</td>
+						<td>{{counts.not_answered}}</td>
+						<td>{{counts.mark_for_review}}</td>
+						<td>{{counts.answered_marked_review}}</td>
+						<td>{{counts.not_visited}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<h3 class="text-center"><b>Are you sure you want to submit for final marking?<br />No changes will be allowed after submission.</b></h3><br />
+			<div class="text-center">
+				<a class="btn btn-primary"  ng-click="doubleConf()" >Yes</a>
+				<button class="btn btn-primary" ng-click="returnToQuiz()">No</button>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- Double Confirmation -->
+	<div class="exam-Summary" ng-show="doubleConfirmation" style="height: 500px;">
+		<div class="container"> 
+			<h3 class="text-center"><b>Thank You, your responses will be submitted for final marking - click OK to complete final submission. </b></h3><br />
+			<div id="example1"></div> 
+
+
+			<div class="text-center">
+					<div class="g-recaptcha" data-sitekey="6Lfc5oQUAAAAAE3CP3fWHj8DEZlHKFBh0AjDnQgT" style="margin-left: 36%;"></div>
+					<p style="color:red;text-algin:center" ng-if="showRecaptchaErrMsg">*Please verify recaptcha</p>
+				<button class="btn btn-primary white_btn" ng-click="submitAnswers()">Ok</button>
+				<button class="btn btn-primary white_btn" ng-click="returnToQuiz()">Cancel</button>
+			</div>
+		</div> 
+	</div>
+	
+	<!-- thank you section -->
+	<div class="exam-Summary" ng-if="thankyouSection" style="height: 500px;">
+		<div class="container"> 
+			<h3 class="text-center"><b>Thank you, Submitted Successfully.</b></h3><br />
+			<div class="text-center">
+				<button class="btn btn-primary white_btn" ng-click="viewResult()">VIEW RESULT</button>
+			</div>
+		</div> 
+	</div>
+	
+	<!-- View Result -->
+		<div class="container" ng-if="showResult" >
+				<div class="col-md-12 text-center"> 
+                            <h3> <b>Result</b>
+                                <a id="btnRBack" class="btn btn-info pull-right">Back</a>
+                            </h3>
+                            <div class="row">
+                                <div class="buttons">
+                                    <h6 class="col-md-3"></h6>
+                                    <h5 class="col-md-6" style="color:red">Please provide your valuable  feedback about Mock Test:</h5>
+                                    <a href="/feedback"  class="btn btn-danger pull-right col-md-3">Student FeedBack</a>
+                                </div>
+                            </div>
+                            <!-- <h5>Score: <strong>{{ Math.round((results.correctQuestions * 100)  / results.totalQuestions) }}%</strong></h5> -->
+                            <br />
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>Total Question</td>
+                                        <th >{{totalQuestions}}</th>
+                                        <td>Total Attempted</td>
+                                        <th >{{counts.answered+counts.mark_for_review+counts.answered_marked_review}}</th>
+                                    </tr>
+                                    <tr >
+                                        <td>Correct Answers</td>
+                                        <th>{{results.correctQuestions}}</th>
+                                        <td>Incorrect Answers</td>
+                                        <th>{{incorrectAnswers}}</th>
+                                    </tr>
+                                    <tr>
+                                    	<td><b>Total Marks</b></td>
+                                        <td>{{results.correctQuestions*4-incorrectAnswers*1}}</td>
+                                        <td><b>Score</b></td>
+                                        <td>{{ Math.round((results.correctQuestions * 100)  / results.totalQuestions) }}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Question No.</th>
+                                        <th>Selected Option</th>
+                                        <th>Status</th>
+                                        <th>Currect Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyResult"> 
+                                	<tr ng-repeat="x in resultQuestions track by $index">
+                                		<td> Question {{x.q}}:</td>
+                                		<td>{{x.an}}</td>
+                                		<td><span ng-class="{'green_status':x.status == 'Correct', 'red_status':x.status == 'Wrong'}">{{x.status || N/A}}</span></td>
+                                		<td>{{x.correctAnswer}}</td>
+                                		</tr>
+                                </tbody>
+                            </table>
+                        </div>
+				</div>
+<div class="popUpLayer" ng-if="timesupPopup">
+		<div class="popup">
+			<h3><b>Times up!</b></h3>
+			<p style="margin:10px 0px 10px 0px">You answers submitted automatically.</p>
+			<button class="btn btn-primary" ng-click="closeTimepopup()">OK</button>
+		</div>
+	 </div>
+</div>
+	
+	<div class="container">
+	
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8" >		
+			<!-- <div ng-hide="playing">
+				<h2 th:text="${quiz.name}" class="form-signin-heading text-center">...</h2>
+				<hr/>	
+				
+				<h1 class="text-center">{{ Math.round((results.correctQuestions * 100)  / results.totalQuestions) }}%</h1>
+				
+				<h3 class="text-center">{{results.correctQuestions}} / {{results.totalQuestions}}</h3>
+			</div> -->
+			
+		</div>
+		
+		<div class="col-sm-2"></div>
+	</div>
+	 <div th:replace="fragments/footer :: footer">...</div>
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/playApp.js"
+		        th:src="@{/js/playApp.js}"></script>
+
+</body>
+<script src="https://www.google.com/recaptcha/api.js" ></script>
+</html>

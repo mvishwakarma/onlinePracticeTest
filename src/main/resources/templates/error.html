@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">...</div>
+	
+	<div class="container">
+		<div class="starter-template">
+		<div class="bg_Area mt-20" style="margin-bottom:20px; height:400px">
+			<h1 th:text="|Error ${status}!|" class="noquiz" style="font-size:50px">Error!</h1>
+		</div>
+		<br />
+		<br />
+		</div>
+	</div>
+<div th:replace="fragments/footer :: footer">...</div>
+	<script>
+			var height = window.innerHeight;
+			document.getElementsByClassName('starter-template')[0].style.height = 500+'px';
+		</script>
+</body>
+</html>

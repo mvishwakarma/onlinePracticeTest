@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="instructionsApp" >
+<div ng-controller="instructionsCtrl">
+	<div th:replace="fragments/header :: header">...</div>
+	<div class="page-title">
+		<div class="container">  
+			<span style="padding:15px  0px 15px 0px; float:left">General Instructions</span> 
+			<span class="pull-right">
+				<small style="font-size:14px">Choose Your Default Language</small> 
+				<select class="form-control" ng-model="selectedLang" ng-change="setLanguage(selectedLang)">
+					<option ng-repeat="x in languageList" value="{{x.code}}">{{x.name}}</option> 
+				</select>
+			</span>
+		</div>
+	</div>
+	<div class="container" ng-if="selectedLang == 'en'"><br />
+		<p class="page_heading"><b>Please read the instructions carefully</b></p>
+		<br />
+		<p><b style="text-decoration:underline">General Instructions:</b></p>
+		<ol>
+           <li>
+               <ul>
+                   <li>Total duration of JEE Main Paper- 1 &amp; JEE Main Paper- 2 is 180 min.</li>
+                   <li>JEE Paper- 2 is for Mathematics, Aptitude Test &amp; Drawing. The Drawing test is required to be done on separate drawing sheet, which is not part of the current mock test.</li>
+               </ul>
+           </li>
+           <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+           <li>
+               The Questions Palette displayed on the right side of screen will show the status of each question using one of the following symbols:
+               <ol>
+                   <li><img th:src="#{static.content.base}+icon1.png" src="" /> You have not visited the question yet.<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon2.png" src="" /> You have not answered the question.<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon3.png" src="" /> You have answered the question.<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon4.png" src="" /> You have NOT answered the question, but have marked the question for review.<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon5.png" src="" /> The question(s) "Answered and Marked for Review" will be considered for evalution.<br /><br /></li>
+               </ol>
+           </li>
+           <li>You can click on the "&gt;" arrow which apperes to the left of question palette to collapse the question palette thereby maximizing the question window. To view the question palette again, you can click on "&lt;" which appears on the right side of question window.</li>
+           <li>You can click on your "Profile" image on top right corner of your screen to change the language during the exam for entire question paper. On clicking of Profile image you will get a drop-down to change the question content to the desired language.</li>
+           <li>You can click on <img th:src="#{static.content.base}+down.png" src="" /> to navigate to the bottom and <img th:src="#{static.content.base}+up.png" src="" /> to navigate to top of the question are, without scrolling.</li>
+       </ol>
+		<hr />
+       <span class="text-danger">Please note all questions will appear in your default language. This language can be changed for a particular question later on.</span>
+		<hr />
+		<label>
+            <input type="checkbox" id="en_ch" ng-model="instructions" />&nbsp;&nbsp;I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare  that I am not in possession of / not wearing / not  carrying any prohibited gadget like mobile phone, bluetooth  devices  etc. /any prohibited material with me into the Examination Hall.I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future Tests / Examinations
+        </label>
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8 text-center">
+			<!-- <h2 th:text="${quiz.name}" class="form-signin-heading text-center">New Quiz</h2>
+			<br/>
+			
+			<h4 th:text="${quiz.description}" class="form-signin-heading">New Quiz</h4>
+			<br/> -->
+			<br />
+			<a th:href="|/quiz/${quiz.id}/play|" th:text="#{label.selectedquiz.playbutton}" ng-disabled = "!instructions" class="btn btn-lg btn-primary " type="submit" onClick="checkInstructions()">Send</a>
+			<br />
+						<br />
+		</div> 
+		<div class="col-sm-2" ></div>
+	</div>
+	
+	
+		<div class="container" ng-if="selectedLang == 'hi'"><br />
+		<p class="page_heading"><b>कृपया निम्नलिखित निर्देशों को ध्यान से पढ़ें</b></p>
+		<br />
+		<p><b style="text-decoration:underline">सामान्य अनुदेश:</b></p>
+		<ol>
+           <li>
+               <ul>
+                   <li>सभी प्रश्नों को हल करने की कुल अवधि JEE Main Paper-1 &amp; Paper-2 के लिए 180 मिनट है।</li>
+                   <li>JEE Paper-2 गणित, योग्यता परीक्षण और ड्राइंग के लिए है। ड्राइंग टेस्ट अलग ड्राइंग शीट पर किया जाना है, जो वर्तमान मॉक टेस्ट का हिस्सा नहीं है।</li>
+               </ul>
+           </li>
+            <li>सर्वर पर घड़ी लगाई गई है तथा आपकी स्क्रीन के दाहिने कोने में शीर्ष पर काउंटडाउन टाइमर में आपके लिए परीक्षा समाप्त करने के लिए शेष समय प्रदर्शित होगा। परीक्षा समय समाप्त होने पर, आपको अपनी परीक्षा बंद या जमा करने की जरूरत नहीं है । यह स्वतः बंद या जमा हो जाएगी।</li>
+			<li>स्क्रीन के दाहिने कोने पर प्रश्न पैलेट, प्रत्येक प्रश्न के लिए निम्न में से कोई एक स्थिति प्रकट करता है:
+  			<ol>
+                   <li><img th:src="#{static.content.base}+icon1.png" src="" /> आप अभी तक प्रश्न पर नहीं गए हैं।<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon2.png" src="" /> आपने प्रश्न का उत्तर नहीं दिया है।<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon3.png" src="" /> आप प्रश्न का उत्तर दे चुके हैं।<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon4.png" src="" /> आपने प्रश्न का उत्तर नहीं दिया है पर प्रश्न को पुनर्विचार के लिए चिन्हित किया है।<br /><br /></li>
+                   <li><img th:src="#{static.content.base}+icon5.png" src="" /> प्रश्न जिसका उत्तर दिया गया है और समीक्षा के लिए भी चिन्हित है , उसका मूल्यांकन किया जायेगा ।<br /><br /></li>
+               </ol>
+           				 कृप्या ध्यान दे प्रश्न "समीक्षा के लिए चिह्नित" की जांच नहीं की जाएगी, इसलिए अंक आवंटित नहीं किए जाएंगे।<br /><br />
+           </li>
+
+             <li>आप प्रश्न पैलेट को छुपाने के लिए "&gt;" चिन्ह पर क्लिक कर सकते है, जो प्रश्न पैलेट के बाईं ओर दिखाई देता है, जिससे प्रश्न विंडो सामने आ जाएगा. प्रश्न पैलेट को फिर से देखने के लिए, "&lt;" चिन्ह पर क्लिक कीजिए जो प्रश्न विंडो के दाईं ओर दिखाई देता है।</li>
+			<li>सम्पूर्ण प्रश्नपत्र की भाषा को परिवर्तित करने के लिए आपको अपने स्क्रीन के ऊपरी दाहिने सिरे पर स्थित प्रोफाइल इमेज पर क्लिक करना होगा। प्रोफाइल इमेज को क्लिक करने पर आपको प्रश्न के अंतर्वस्तु को इच्छित भाषा में परिवर्तित करने के लिए ड्राप-डाउन मिलेगा ।</li>
+      	   <li>आपको अपने स्क्रीन के निचले हिस्से को स्क्रॉलिंग के बिना नेविगेट करने के लिए <img th:src="#{static.content.base}+down.png" src="" /> और ऊपरी हिस्से को नेविगेट करने के लिए <img th:src="#{static.content.base}+up.png" src="" /> पर क्लिक करना होगा ।</li>
+      	
+       </ol>
+       <h4><strong><u>किसी प्रश्न पर जाना :</u></strong></h4>
+         <ol start="7">
+             <li> देने हेतु कोई प्रश्न चुनने के लिए, आप निम्न में से कोई एक कार्य कर सकते हैं:
+                 <ol type="a">
+                     <li>स्क्रीन के दाईं ओर प्रश्न पैलेट में प्रश्न पर सीधे जाने के लिए प्रश्न संख्या पर क्लिक करें। ध्यान दें कि इस विकल्प का प्रयोग करने से मौजूदा प्रश्न के लिए आपका उत्तर सुरक्षित नहीं होता है।</li>
+                     <li>वर्तमान प्रश्न का उत्तर सुरक्षित करने के लिए और क्रम में अगले प्रश्न पर जाने के लिए  <strong>Save &amp; Next</strong> पर क्लिक करें।</li>
+                     <li>वर्तमान प्रश्न का उत्तर सुरक्षित करने के लिए, पुनर्विचार के लिए चिह्नित करने और क्रम में अगले प्रश्न पर जाने के लिए  <strong>Mark for Review &amp; Next</strong> पर क्लिक करें।</li>
+                 </ol>
+             </li>
+         </ol>
+          <h4><strong><u>प्रश्नों का उत्तर देना :</u></strong></h4>
+            <ol start="8">
+                <li> बहुविकल्पीय प्रकार के प्रश्न के लिए
+                    <ol type="a">
+                        <li>अपना उत्तर चुनने के लिए, विकल्प के बटनों में से किसी एक पर क्लिक करें।</li>
+                        <li>चयनित उत्तर को अचयनित करने के लिए, चयनित विकल्प पर दुबारा क्लिक करें या <strong>Clear Response</strong> बटन पर क्लिक करें।</li>
+                        <li>अपना उत्तर बदलने के लिए, अन्य वांछित विकल्प बटन पर क्लिक करें।</li>
+                        <li>अपना उत्तर सुरक्षित करने के लिए, आपको <strong>Save &amp; Next</strong> पर क्लिक करना जरूरी है। </li>
+                        <li>किसी प्रश्न को पुनर्विचार के लिए चिह्नित करने हेतु <strong>Mark for Review &amp; Next</strong> बटन पर क्लिक करें।</li>
+                    </ol>
+                </li>
+                <li>किसी प्रश्न का उत्तर बदलने के लिए, पहले प्रश्न का चयन करें, फिर नए उत्तर के विकल्प पर क्लिक करने के बाद <strong>Save &amp; Next</strong> बटन पर क्लिक करें।</li>
+            </ol>
+          <h4><strong><u>अनुभागों द्वारा प्रश्न पर जाना:</u></strong></h4>
+             <ol start="10">
+                 <li>इस प्रश्नपत्र में स्क्रीन के शीर्ष बार पर अनुभाग (Sections) प्रदर्शित हैं। किसी अनुभाग के प्रश्न, उस अनुभाग के नाम पर क्लिक करके देखे जा सकते हैं। आप वर्तमान में जिस अनुभाग का उत्तर दे रहे हैं, वह अनुभाग हाईलाइट होगा।</li>
+                 <li>किसी अनुभाग के लिए अंतिम प्रश्न के <strong>Save &amp; Next</strong> बटन पर क्लिक करने के बाद, आप स्वचालित रूप से अगले अनुभाग के प्रथम प्रश्न पर पहुंच जाएंगे।</li>
+                 <li>आप परीक्षा में निर्धारित समय के दौरान किसी भी समय प्रश्नावलियों और प्रश्नों के बीच अपनी सुविधा के अनुसार आ-जा (शफल कर) सकते हैं।</li>
+                 <li>परीक्षार्थी संबंधित सेक्शन की समीक्षा को लीजेन्ड के भाग के रूप में देख सकते हैं ।</li>
+             </ol>
+         
+		<hr />
+       <span class="text-danger">कृपया ध्यान दें कि सभी प्रश्न आपकी चयनित डिफ़ॉल्ट भाषा में दिखाई देंगे। इस भाषा को बाद में किसी विशेष प्रश्न के लिए बदला जा सकता है ।</span>
+		<hr />
+		<label>
+            <input type="checkbox" id="en_ch" ng-model="instructions" />&nbsp;&nbsp;मैंने उपरोक्त सभी निर्देशों को पढ़ और समझ लिया है। मेरे लिए आवंटित सभी कंप्यूटर हार्डवेयर उचित काम करने की स्थिति में हैं। मैं घोषणा करता हूं कि मैं किसी भी प्रकार के निषिद्ध गैजेट जैसे मोबाइल फोन, ब्लूटूथ डिवाइस इत्यादि / परीक्षा हॉल में मेरे साथ किसी भी प्रकार की निषिद्ध सामग्री नहीं  हैं । मैं सहमत हूं कि निर्देशों का पालन न करने के मामले में, मैं इस टेस्ट और अनुशासनात्मक कार्रवाई के लिए उत्तरदायी होऊँगा, जिसमें भविष्य मे होने वाले टेस्ट / परीक्षाओं से प्रतिबंध भी शामिल हो सकता है ।
+        </label>
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8 text-center">
+			<!-- <h2 th:text="${quiz.name}" class="form-signin-heading text-center">New Quiz</h2>
+			<br/>
+			
+			<h4 th:text="${quiz.description}" class="form-signin-heading">New Quiz</h4>
+			<br/> -->
+			<br />
+			<a th:href="|/quiz/${quiz.id}/play|" th:text="#{label.selectedquiz.playbutton}" ng-disabled = "!instructions" class="btn btn-lg btn-primary " type="submit" onClick="checkInstructions()">Send</a>
+			<br />
+						<br />
+		</div> 
+		<div class="col-sm-2" ></div>
+	</div>
+	
+	
+		<div class="container" ng-if="selectedLang == 'ga'"><br />
+		<p class="page_heading"><b>કૃપા કરીને સૂચનાઓને કાળજીપૂર્વક વાંચો</b></p>
+		<br />
+		<p><b style="text-decoration:underline"><strong><u>સામાન્ય સૂચનાઓ:</u></strong></b></p>
+		<ol>
+           <li>
+               <ul>
+                    <li>JEE Main Paper - 1 &amp; JEE Main Paper - 2 નની કુલ સમયગાળો 180 મિનિટ છે.</li>
+					<li>JEE Main Paper - 2 ગણિતશાસ્ત્ર, એપ્પ્ટીએટ ટેસ્ટ અને ડ્રોઇંગ માટે છે, આખરી પરીક્ષામાં ડ્રોઈંગ ટેસ્ટ કરવામાં આવશે.</li>
+			</ul>
+           </li>
+            <li>ઘડિયાળ સર્વર પર સેટ કરવામાં આવશે. સ્ક્રીનની ઉપર જમણા ખૂણે કાઉન્ટડાઉન ટાઈમર પરીક્ષા પૂર્ણ કરવા  તમારા માટે ઉપલબ્ધ બાકી સમય પ્રદર્શિત કરશે. જ્યારે ટાઈમર શૂન્ય સુધી પહોંચે છે, પરીક્ષા પોતે જ અંત લાવશે. તમારે તમારી પરીક્ષા સમાપ્ત કરવી અથવા સબમિટ કરવાની જરૂર નથી.</li>
+			<li>નીચેનાં પ્રતીકોમાંથી કોઇ એક પ્રતીકનો ઉપયોગ કરીને સ્ક્રીનની જમણી બાજુએ દર્શાવવામાં આવેલા પ્રશ્નોની પેલેટ દરેક પ્રશ્નની સ્થિતિ દર્શાવશે:
+			    <ol>
+                   <li><img src="../../images/icon1.png" /> તમે હજી સુધી પ્રશ્નની મુલાકાત લીધી નથી.<br /><br /></li>
+                   <li><img src="../../images/icon2.png" /> તમે પ્રશ્નનો જવાબ આપ્યો નથી.<br /><br /></li>
+                   <li><img src="../../images/icon3.png" /> તમે પ્રશ્નનો જવાબ આપ્યો છે.<br /><br /></li>
+                   <li><img src="../../images/icon4.png" /> તમે પ્રશ્નનો જવાબ આપ્યો નથી, પરંતુ સમીક્ષા માટે પ્રશ્ન ચિહ્નિત કર્યો છે.<br /><br /></li>
+                   <li><img src="../../images/icon5.png" /> મૂલ્યાંકન માટે પ્રશ્ન (ઓ) "જવાબ આપ્યો અને ચિહ્નિત થયેલ છે" માટે મૂલ્યાંકન કરવામાં આવશે.<br /><br /></li>
+               </ol>
+                	પ્રશ્ન પર સમીક્ષાની સ્થિતિ માટે ચિહ્નિત થયેલું ફક્ત એ સૂચવે છે કે તમે ફરીથી તે પ્રશ્નને જોવા માંગો છો.<br /><br />
+           </li>
+             <li>પ્રશ્ન પૅલેટને વિસ્તૃત જોવા માટે પ્રશ્ન પૅલેટની ડાબી બાજુએ જે "&gt;" તીર દેખાય છે તેના પર ક્લિક કરી શકો છો, જેનાથી પ્રશ્ન વિન્ડો વિસ્તૃત થાય છે. પ્રશ્ન પેલેટને ફરી જોવા માટે, તમે "&lt;" પર ક્લિક કરી શકો છો જે પ્રશ્ન વિંડોની જમણી બાજુ પર દેખાય છે.</li>
+			<li>સમગ્ર પરીક્ષા દરમિયાન ભાષા બદલવા માટે તમે તમારી સ્ક્રીનની ઉપર જમણા ખૂણે તમારી "પ્રોફાઇલ" Image પર ક્લિક કરી શકો છો. પ્રોફાઇલ Image ને ક્લિક કરવા પર તમને પ્રશ્ન સામગ્રીને ઇચ્છિત ભાષામાં બદલવા માટે ડ્રોપ-ડાઉન મળશે.</li>
+          	<li>તમે  <img src="../../images/down.png" /> ઉપર ક્લિક કરી શકો છો  જે પ્રશ્નની નીચે લઈ જાય છે અને  <img src="../../images/up.png" /> જે સ્ક્રોલિંગ વગર, પ્રશ્નની ટોચ પર લઈ જાય છે.</li>
+       </ol>
+        <h4><strong><u>પ્રશ્ન પર જવુ:</u></strong></h4>
+            <ol start="7">
+                <li> કોઈ પ્રશ્નનો જવાબ આપવા માટે, નીચે પ્રમાણે કરો:
+                    <ol type="a">
+                        <li>ક્રમાંકિત પ્રશ્ન પર સીધા જ જવા માટે, તમારી સ્ક્રીનની જમણી બાજુએ આપેલ પેલેટના પ્રશ્ન નંબર પર પર ક્લિક કરો. નોંધ કરો કે આ વિકલ્પનો ઉપયોગ તમારા વર્તમાન પ્રશ્નનો જવાબ સાચવતો નથી.</li>
+                        <li>વર્તમાન પ્રશ્નનો જવાબ સાચવવા માટે  <strong>Save &amp; Next</strong> ઉપર ક્લિક કરો અને પછી આગળના પ્રશ્ન પર જાઓ.</li>
+                        <li>વર્તમાન પ્રશ્નનો તમારો જવાબ બચાવવા માટે  <strong>Mark for Review &amp; Next</strong> ઉપર ક્લિક કરો, તેની સમીક્ષા માટે ચિહ્નિત કરો, અને પછી આગલા પ્રશ્ન પર જાઓ.</li>
+                    </ol>
+                </li>
+            </ol>
+       <h4><strong><u>પ્રશ્નનો જવાબ આપવો:</u></strong></h4>
+           <ol start="8">
+               <li> વૈકલ્પિક પ્રશ્નના જવાબની કાર્યવાહી:
+                   <ol type="a">
+                       <li>તમરો જવાબ આપવા માટે, વિકલ્પો પૈકી કોઇ એક બટન પર ક્લિક કરો.</li>
+                       <li>તમારા પસંદ કરેલા જવાબને નાપસંદ કરવા માટે, પસંદ કરેલ વિકલ્પના બટન પર ફરીથી ક્લિક કરો અથવા <strong>Clear Response</strong> બટન પર ક્લિક કરો.</li>
+                       <li>તમારા પસંદ કરેલા જવાબને બદલવા માટે, બીજા વિકલ્પના બટન પર ક્લિક કરો.</li>
+                       <li>તમારો જવાબ બચાવવા માટે, તમારે <strong> Save &amp; Next </strong> બટન પર ક્લિક કરવું પડશે.</li>
+                       <li>સમીક્ષા કરવા માટે પ્રશ્નને ચિંહિત કરવ, <strong> Mark for Review &amp; Next </strong>>બટન પર ક્લિક કરો.</li>
+                   </ol>
+               </li>
+               <li>તમારા અગાઉથી આપવામાં આવેલા પ્રશ્નનોના જવાબ બદલવા માટે, સૌપ્રથમ જેતે પ્રશ્ન પસંદ કરો અને પછી તે પ્રકારના પ્રશ્નનો જવાબ આપવા માટેની પ્રક્રિયાને અનુસરો.</li>
+           </ol>
+         <h4><strong><u>વિભાગો દ્વારા આગળ જવુ:</u></strong></h4>
+            <ol start="10">
+                <li>આ પ્રશ્નપત્રોમાં વિભાગો સ્ક્રીનની ટોચની પટ્ટી પર દર્શાવવામાં આવે છે. એક વિભાગમાં પ્રશ્નો વિભાગ નામ પર ક્લિક કરીને જોઈ શકાય છે. તમે હાલમાં જોઈ રહ્યાં છો તે વિભાગ હાઇલાઇટ થયેલ છે.</li>
+                <li>એક વિભાગ માટે છેલ્લા પ્રશ્ન પર બટન <strong> Save &amp; Next </strong> પર ક્લિક કરો પછી , તમને આપોઆપ આગામી વિભાગના પ્રથમ પ્રશ્ન પર લઈ જવામાં આવશે.</li>
+                <li>પરીક્ષા દરમ્યાન નક્કી કરેલ સમય દરમ્યાન તમારી સગવડ પ્રમાણે વિભાગો અને પ્રશ્નો વચ્ચે કોઈ ફેરબદલ કરી શકો છો.</li>
+                <li>પ્રશ્ન પૅલેટની ઉપરના પ્રત્યેક વિભાગમાં દેખાતી નોંધના ભાગ રૂપે ઉમેદવાર અનુરૂપ વિભાગનો સારાંશ જોઈ શકે છે</li>
+            </ol>
+       
+		<hr />
+       <span class="text-danger">કૃપા કરીને નોંધો કે બધા પ્રશ્નો તમારી ડિફોલ્ટ ભાષામાં દેખાશે. આ ભાષાને પછીથી કોઈ ચોક્કસ પ્રશ્ન માટે બદલી શકાય છે.</span>
+		<hr />
+		<label>
+            <input type="checkbox" id="en_ch" ng-model="instructions" />&nbsp;&nbsp;મેં સૂચનાઓ વાંચી છે અને સમજી છે. મને ફાળવેલ તમામ કમ્પ્યુટર હાર્ડવેર યોગ્ય કામ કરવાની સ્થિતિમાં છે હું જાહેર કરું છું કે હું મારી સાથે પરીક્ષા હોલમાં મોબાઇલ ફોન, બ્લુટુથ ડિવાઇસ વગેરે જેવા કોઈ પ્રતિબંધિત સાધન/ સમગ્રી ચાલુ નથી રાખી, પહેરી નથી,  લાવ્યો નથી. હું સંમત છું કે સૂચનાઓનું પાલન ન કરવાના કિસ્સામાં,  હું આ ટેસ્ટ અને / અથવા શિસ્તભંગની કાર્યવાહીમાંથી બાકાત થઈ શકું છું, જેમાં ભવિષ્યની ટેસ્ટ / પરીક્ષાઓ પર પ્રતિબંધ શામેલ હોઈ શકે છે.
+</label>
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8 text-center">
+			<!-- <h2 th:text="${quiz.name}" class="form-signin-heading text-center">New Quiz</h2>
+			<br/>
+			
+			<h4 th:text="${quiz.description}" class="form-signin-heading">New Quiz</h4>
+			<br/> -->
+			<br />
+			<a th:href="|/quiz/${quiz.id}/play|" th:text="#{label.selectedquiz.playbutton}" ng-disabled = "!instructions" class="btn btn-lg btn-primary " type="submit" onClick="checkInstructions()">Send</a>
+			<br />
+						<br />
+		</div> 
+		<div class="col-sm-2" ></div>
+	</div>
+	
+	 
+	</div>
+	<div th:replace="fragments/footer :: footer">...</div>
+	 <div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/quizView.js"
+		        th:src="@{/js/quizView.js}"></script>
+	
+</body> 
+</html>
